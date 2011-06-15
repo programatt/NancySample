@@ -11,18 +11,16 @@ namespace NancySample.Modules
     {
         public MainModule()
         {
-            Func<string, string> DoStuff = (name) =>
-                                               {
-                                                   return "Hello " + name;
-                                               };
-
-        Get["/"] = parameters =>
-                           {
-                               return "Hello World!";
-                           };
-            Get["/DoStuff/{name}"] = (name) =>
+            //Canonical hello world path
+            Get["/"] = parameters =>
+                               {
+                                   return "Hello World!";
+                               };
+         
+            //Example of parameter capturing 
+            Get["/DoStuff/{name}"] = req =>
                                          {
-                                             return DoStuff(name);
+                                             return "Hello " + req.name;
                                          };
         }
 
